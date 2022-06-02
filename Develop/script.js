@@ -1,6 +1,5 @@
 // User input variables
 var ok;
-var selection;
 var confirmSpecialCharacters;
 var confirmNumericCharacters;
 var confirmLowerCasedCharacters;
@@ -45,7 +44,7 @@ numericCharacters = [
   '8',
   '9'
  ];
- lowerCasedCharacters = [
+lowerCasedCharacters = [
   'a',
   'b',
   'c',
@@ -101,7 +100,7 @@ upperCasedCharacters = [
   'Y',
   'Z'
 ];
-
+var selection;
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -127,22 +126,24 @@ function writePassword() {
     alert("This needs a value");
   } else if (ok > 128 || ok < 8){
     ok = prompt("You must choose between 8 and 128 characters");
-  } else{
+  } else {
     confirmSpecialCharacters = confirm("Will the password contain special characters?");
     confirmNumericCharacters = confirm("Will the password contain mumeric characters?");
     confirmLowerCasedCharacters = confirm("Will the password contain lower cassed characters?");
-    confirmUpperCasedCharacters = confirm("Will the password contain upper cassed characters?")
-  };
-
-  // 4 negative user variables selection
-  if (!confirmNumericCharacters && !confirmNumericCharacters && !confirmLowerCasedCharacters && !confirmUpperCasedCharacters) {
-    selection = ("You must select a criteria");
-  } 
+    confirmUpperCasedCharacters = confirm("Will the password contain upper cassed characters?");
+  }; 
   
+  // 4 negative user variables selection
+  if (!confirmSpecialCharacters && !confirmNumericCharacters && !confirmLowerCasedCharacters && !confirmUpperCasedCharacters) {
+    alert("You must select a criteria");
+    writePassword();
+  }
+  
+
   // 4 positive user variables selection
   else if (confirmSpecialCharacters && confirmNumericCharacters && confirmLowerCasedCharacters && confirmUpperCasedCharacters) {
     selection = specialCharacters.concat(numericCharacters, lowerCasedCharacters, upperCasedCharacters);
-  } 
+  }
 
   // 3 positive user variables selection
   else if (confirmSpecialCharacters && confirmNumericCharacters && confirmLowerCasedCharacters) {
